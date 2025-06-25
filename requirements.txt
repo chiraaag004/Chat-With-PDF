@@ -3,7 +3,6 @@ pillow
 lxml
 python_dotenv
 unstructured[all-docs]
-pdfminer.six
 tiktoken
 langchain
 langchain-community

@@ -1,18 +1,20 @@
-# 📄🤖 Chat with PDF (Multimodal RAG)
+# 🦾 RagBot! — Multimodal PDF Chat with RAG
 
-A Streamlit app and utility toolkit for **multimodal retrieval-augmented generation (RAG)** with PDFs.  
-Upload a PDF, extract and summarize its text, tables, and images, and chat with it using advanced LLMs (Groq, Gemini) — all with context-aware, multimodal answers!
+A Streamlit app for **chatting with your PDFs** using Retrieval-Augmented Generation (RAG) and multimodal LLMs.  
+Upload one or more PDFs, extract and summarize their text, tables, and images, and ask questions with full conversational memory!
 
 ---
 
 ## Features
 
-- **PDF Parsing:** Extracts text, tables, and images from uploaded PDFs.
+- **Multiple PDF Upload:** Upload and process several PDFs at once.
+- **Content Extraction:** Extracts text, tables, and images from PDFs.
 - **Summarization:** Summarizes text, tables, and images using LLMs (Groq for text/tables, Gemini for images).
-- **Vector Store:** Stores summaries and original content for efficient retrieval.
+- **Vector Store (ChromaDB):** Stores summaries and original content for efficient retrieval.
 - **Multimodal RAG:** Answers questions using both text and images as context.
-- **Conversational Memory:** Remembers previous chat turns for context-aware Q&A.
-- **Streamlit UI:** Simple, interactive web interface.
+- **Conversational Chat:** Remembers previous chat turns for context-aware Q&A.
+- **ChromaDB Inspector:** Inspect and test your vectorstore from the sidebar.
+- **Export Chat:** Download your chat history.
 
 ---
 
@@ -31,30 +33,33 @@ cd chat_with_pdf
 pip install -r requirements.txt
 ```
 
-### 3. Set up environment variables
+### 3. Set up API keys
 
-Create a `.env` file in the project root with your API keys:
+Create a `.env` file in the project root with:
 
 ```
-GOOGLE_API_KEY=your_google_api_key
-GROQ_API_KEY=your_groq_api_key
-LANGCHAIN_API_KEY=your_langchain_api_key
+GROQ_API_KEY="your_groq_api_key"
+GOOGLE_API_KEY="your_google_api_key"
+LANGCHAIN_API_KEY="your_langchain_api_key"
 ```
 
-### 4. Run the Streamlit app
+Or, if using Streamlit Cloud, add these to your app’s **Secrets**.
+
+### 4. Run the app
 
 ```bash
-streamlit run app.py
+streamlit run index.py
 ```
 
 ---
 
 ## Usage
 
-1. **Upload a PDF** using the file uploader.
-2. The app will extract and summarize the content.
-3. **Ask questions** about your PDF in the chat interface.
-4. The assistant will answer using both text and images from your document, remembering previous messages.
+1. **Upload PDFs** using the sidebar uploader.
+2. Click **Submit to DB** to process and summarize.
+3. Inspect your vectorstore in the sidebar.
+4. **Chat** with your PDFs using the chat input at the bottom.
+5. Download your chat history if desired.
 
 ---
 
@@ -63,46 +68,39 @@ streamlit run app.py
 ```
 chat_with_pdf/
 │
-├── app.py                # Streamlit app
-├── utils.py              # Core PDF, summarization, vectorstore, and prompt utilities
-├── requirements.txt      # Python dependencies
-├── .env                  # Your API keys (not included in repo)
-└── README.md             # This file
+├── index.py                  # Main Streamlit app
+├── modules/
+│   ├── __init__.py           # Package initialization
+│   ├── pdf_handler.py        # PDF upload and saving
+│   ├── pdf_processing.py     # PDF parsing and image extraction
+│   ├── summarization.py      # Summarization logic
+│   ├── vectorstore_utils.py  # Vectorstore and retriever setup
+│   ├── chroma_inspector.py   # ChromaDB inspector sidebar
+│   ├── chat.py               # Chat logic and chat history
+│   ├── prompt_utils.py       # Prompt and doc parsing utilities
+│   └── llm_models.py         # LLM and embedding model setup
+├── packages.txt
+├── requirements.txt
+├── .env                      # Your API keys (not included in repo)
+└── README.md
 ```
-
----
-
-## Core Files
-
-### `app.py`
-
-- Streamlit UI for uploading PDFs and chatting.
-- Handles chat history and displays summaries.
-
-### `utils.py`
-
-- `process_pdf`: Extracts texts, tables, and images from PDFs.
-- `summarize_texts_and_tables`: Summarizes text and tables with Groq LLM.
-- `summarize_images`: Summarizes images with Gemini.
-- `build_vectorstore`, `add_documents_to_retriever`: Sets up vector store and adds content.
-- `parse_docs`, `build_prompt`: Prepares multimodal context and prompts for Gemini.
 
 ---
 
 ## Requirements
 
-See [`requirements.txt`](./requirements.txt) for all dependencies.
+See [`requirements.txt`](./requirements.txt) & [`packages.txt`](./packages.txt) for all dependencies.
+
 
 ---
 
 ## API Keys
 
-- **GOOGLE_API_KEY**: For Google Generative AI (Gemini models and embeddings).
-- **GROQ_API_KEY**: For fast Llama-3 summarization.
-- **LANGCHAIN_API_KEY**: For LangChain integrations and enhanced features.
+- **GROQ_API_KEY**: For Groq Llama-3 summarization.
+- **GOOGLE_API_KEY**: For Gemini models and embeddings.
+- **LANGCHAIN_API_KEY**: For LangChain integrations.
 
 ---
-
 
 ## Acknowledgements
 
