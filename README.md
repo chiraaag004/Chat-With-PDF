@@ -1,24 +1,24 @@
 # 🦾 RagBot! — Multimodal PDF Chat with RAG
 
-A Streamlit app for **chatting with your PDFs** using Retrieval-Augmented Generation (RAG) and multimodal LLMs.  
+**RagBot** is a Streamlit app that lets you **chat with your PDFs** using Retrieval-Augmented Generation (RAG) and multimodal LLMs.  
 Upload one or more PDFs, extract and summarize their text, tables, and images, and ask questions with full conversational memory!
 
 ---
 
-## Features
+## 🚀 Features
 
-- **Multiple PDF Upload:** Upload and process several PDFs at once.
-- **Content Extraction:** Extracts text, tables, and images from PDFs.
-- **Summarization:** Summarizes text, tables, and images using LLMs (Groq for text/tables, Gemini for images).
-- **Vector Store (ChromaDB):** Stores summaries and original content for efficient retrieval.
-- **Multimodal RAG:** Answers questions using both text and images as context.
-- **Conversational Chat:** Remembers previous chat turns for context-aware Q&A.
-- **ChromaDB Inspector:** Inspect and test your vectorstore from the sidebar.
-- **Export Chat:** Download your chat history.
+- **📁 Multiple PDF Upload:** Upload and process several PDFs at once.
+- **🔎 Content Extraction:** Extracts text, tables, and images from PDFs.
+- **📝 Summarization:** Summarizes text, tables, and images using LLMs (Groq for text/tables, Gemini for images).
+- **🗃️ Vector Store (ChromaDB):** Stores summaries and original content for efficient retrieval.
+- **🖼️ Multimodal RAG:** Answers questions using both text and images as context.
+- **💬 Conversational Chat:** Remembers previous chat turns for context-aware Q&A.
+- **🧪 ChromaDB Inspector:** Inspect and test your vectorstore from the sidebar.
+- **⬇️ Export Chat:** Download your chat history.
 
 ---
 
-## Quickstart
+## ⚡ Quickstart
 
 ### 1. Clone the repository
 
@@ -37,7 +37,7 @@ pip install -r requirements.txt
 
 Create a `.env` file in the project root with:
 
-```
+```env
 GROQ_API_KEY="your_groq_api_key"
 GOOGLE_API_KEY="your_google_api_key"
 LANGCHAIN_API_KEY="your_langchain_api_key"
@@ -53,7 +53,7 @@ streamlit run index.py
 
 ---
 
-## Usage
+## 🛠️ Usage
 
 1. **Upload PDFs** using the sidebar uploader.
 2. Click **Submit to DB** to process and summarize.
@@ -63,7 +63,7 @@ streamlit run index.py
 
 ---
 
-## Project Structure
+## 📂 Project Structure
 
 ```
 chat_with_pdf/
@@ -87,14 +87,13 @@ chat_with_pdf/
 
 ---
 
-## Requirements
+## 📦 Requirements
 
 See [`requirements.txt`](./requirements.txt) & [`packages.txt`](./packages.txt) for all dependencies.
 
-
 ---
 
-## API Keys
+## 🔑 API Keys
 
 - **GROQ_API_KEY**: For Groq Llama-3 summarization.
 - **GOOGLE_API_KEY**: For Gemini models and embeddings.
@@ -102,7 +101,7 @@ See [`requirements.txt`](./requirements.txt) & [`packages.txt`](./packages.txt) 
 
 ---
 
-## Acknowledgements
+## 🙏 Acknowledgements
 
 - [LangChain](https://github.com/langchain-ai/langchain)
 - [Unstructured](https://github.com/Unstructured-IO/unstructured)
